@@ -58,6 +58,7 @@
 </head>
 <body class="min-h-screen flex flex-col justify-between">
 
+    <!-- Header / Navbar -->
     <header class="sticky top-0 z-30 glass-panel border-b border-slate-800">
         <div class="max-w-7xl mx-auto px-4 h-16 flex items-center justify-between">
             <div class="flex items-center space-x-3">
@@ -68,23 +69,24 @@
                     Tax & Fiscal Tools Pro
                 </h1>
             </div>
-            <a href="https://buymeacoffee.com/eduardorito" target="_blank" class="px-3.5 py-2 rounded-xl text-xs font-semibold bg-amber-500/10 text-amber-400 border border-amber-500/30 flex items-center gap-2">
+            <a href="https://buymeacoffee.com/eduardorito" target="_blank" class="px-3.5 py-2 rounded-xl text-xs font-semibold bg-amber-500/10 text-amber-400 border border-amber-500/30 hover:bg-amber-500/20 transition-all flex items-center gap-2">
                 <i class="fa-solid fa-mug-hot"></i> <span>Invítame un café</span>
             </a>
         </div>
     </header>
 
+    <!-- Main Container -->
     <main class="flex-1 max-w-6xl w-full mx-auto px-4 py-8 space-y-10">
 
         <!-- Hero Title -->
-        <section class="text-center space-y-4 max-w-3xl mx-auto">
+        <section class="text-center space-y-4 max-w-3xl mx-auto pt-4">
             <h2 class="text-3xl sm:text-4xl font-extrabold text-white">Plataforma Web de Utilidades Fiscales para México</h2>
             <p class="text-slate-400 text-sm leading-relaxed">
                 Herramientas gratuitas de alto rendimiento diseñadas para contadores, auxiliares administrativos, nóminas y contribuyentes. Todos los procesos se realizan de forma 100% local en tu navegador para proteger tu privacidad.
             </p>
         </section>
 
-        <!-- Tarjetas a los Proyectos -->
+        <!-- Tarjetas Principales de Selección -->
         <section class="grid grid-cols-1 md:grid-cols-2 gap-6">
             <!-- Lector XML SAT -->
             <div class="glass-panel rounded-2xl p-6 flex flex-col justify-between space-y-4 hover:border-cyan-500/50 transition-all">
@@ -97,7 +99,8 @@
                         Analiza comprobantes fiscales digitales en formatos CFDI 3.3, 4.0 y metadatos masivos TXT del SAT. Visualiza importes, retenciones, impuestos trasladados, emisores, receptores y genera versiones en PDF impreso con código QR oficial.
                     </p>
                 </div>
-                <a href="/lector-xml-sat/" class="w-full py-3 rounded-xl bg-cyan-500/20 text-cyan-300 font-bold text-xs text-center border border-cyan-500/30 hover:bg-cyan-500/30 transition-all block">
+                <!-- ENLACE CORREGIDO APUNTANDO AL ARCHIVO HTML -->
+                <a href="lector-xml-sat.html" class="w-full py-3 rounded-xl bg-cyan-500/20 text-cyan-300 font-bold text-xs text-center border border-cyan-500/30 hover:bg-cyan-500/30 transition-all block">
                     Abrir Lector XML SAT <i class="fa-solid fa-arrow-right ml-1"></i>
                 </a>
             </div>
@@ -113,17 +116,18 @@
                         Determina la retención de Impuesto Sobre la Renta con las tarifas oficiales vigentes LISR 2026. Permite cálculo directo, despeje inverso de Neto a Bruto y procesamiento masivo de nóminas desde archivos de Excel con exportación a PDF.
                     </p>
                 </div>
-                <a href="/calculadora-isr/" class="w-full py-3 rounded-xl bg-blue-500/20 text-blue-300 font-bold text-xs text-center border border-blue-500/30 hover:bg-blue-500/30 transition-all block">
+                <!-- ENLACE CORREGIDO APUNTANDO AL ARCHIVO HTML -->
+                <a href="calculadora-isr.html" class="w-full py-3 rounded-xl bg-blue-500/20 text-blue-300 font-bold text-xs text-center border border-blue-500/30 hover:bg-blue-500/30 transition-all block">
                     Abrir Calculadora ISR <i class="fa-solid fa-arrow-right ml-1"></i>
                 </a>
             </div>
         </section>
 
         <!-- Párrafos Explicativos de Texto para Aprobar AdSense -->
-        <section class="glass-panel rounded-2xl p-6 sm:p-8 space-y-6 text-xs text-slate-300 leading-relaxed">
+        <section class="glass-panel rounded-2xl p-6 sm:p-8 space-y-4 text-xs text-slate-300 leading-relaxed">
             <h3 class="text-base font-bold text-white border-b border-slate-800 pb-3">Información sobre el Cumplimiento Fiscal y Tecnologías Utilizadas</h3>
             
-            <div class="space-y-4">
+            <div class="space-y-3">
                 <h4 class="font-bold text-cyan-400">¿Cómo funcionan nuestras herramientas fiscales?</h4>
                 <p>
                     El ecosistema de herramientas disponible en este sitio web tiene como objetivo facilitar la gestión tributaria conforme a las disposiciones de la Ley del Impuesto Sobre la Renta (LISR) y el Código Fiscal de la Federación (CFF) en México. Mediante la automatización en el cliente (Browser-side Executables), permitimos la lectura de estructuras complejas XML de comprobantes fiscales digitales por Internet (CFDI) en versión 4.0, así como el desglose analítico de retenciones tributarias.
@@ -132,6 +136,42 @@
                 <h4 class="font-bold text-cyan-400">Garantía de Privacidad y Seguridad Informática</h4>
                 <p>
                     Entendemos la sensibilidad de la información contable y financiera. Por esta razón, el 100% de los algoritmos de procesamiento de archivos (conversión de archivos XML a PDF, análisis de TXT del SAT y cálculos de nómina masivos desde libros de Microsoft Excel) se ejecutan mediante scripts en memoria dentro del navegador del usuario. Ningún archivo, dato personal o registro fiscal es transmitido a servidores ni almacenado en bases de datos externas.
+                </p>
+            </div>
+        </section>
+
+        <!-- SECCIÓN DE LAS 3 TARJETAS INFORMATIVAS (TAL COMO EN LA PRIMERA IMAGEN) -->
+        <section class="grid grid-cols-1 md:grid-cols-3 gap-6 pt-2">
+            <!-- Tarjeta 1 -->
+            <div class="glass-panel rounded-2xl p-6 space-y-3">
+                <div class="flex items-center gap-2.5 text-cyan-400 font-bold text-sm">
+                    <i class="fa-solid fa-lock"></i>
+                    <h4>Procesamiento 100% Local & Privado</h4>
+                </div>
+                <p class="text-xs text-slate-400 leading-relaxed">
+                    Nuestra herramienta procesa tus comprobantes fiscales digitales directamente en el navegador del usuario utilizando JavaScript de última generación. Los archivos <strong class="text-slate-200">nunca se envían ni se almacenan en servidores externos</strong>, garantizando la privacidad absoluta de tu información contable.
+                </p>
+            </div>
+
+            <!-- Tarjeta 2 -->
+            <div class="glass-panel rounded-2xl p-6 space-y-3">
+                <div class="flex items-center gap-2.5 text-blue-400 font-bold text-sm">
+                    <i class="fa-solid fa-certificate"></i>
+                    <h4>Compatibilidad CFDI 3.3, 4.0 y TXT</h4>
+                </div>
+                <p class="text-xs text-slate-400 leading-relaxed">
+                    Soporte integral para las estructuras XML del SAT vigentes y reportes masivos de metadatos TXT. Analiza facturas de ingreso, egreso, complementos de pago y recibos de nómina. Genera la representación impresa en PDF con código QR oficial.
+                </p>
+            </div>
+
+            <!-- Tarjeta 3 -->
+            <div class="glass-panel rounded-2xl p-6 space-y-3">
+                <div class="flex items-center gap-2.5 text-emerald-400 font-bold text-sm">
+                    <i class="fa-solid fa-file-csv"></i>
+                    <h4>Exportación Masiva a Excel / CSV</h4>
+                </div>
+                <p class="text-xs text-slate-400 leading-relaxed">
+                    Agiliza la contabilización de tus gastos e ingresos. Puedes cargar múltiples archivos de forma masiva y exportar un reporte estructurado en formato CSV en segundos con datos de emisores, receptores, impuestos trasladados, retenidos y UUIDs.
                 </p>
             </div>
         </section>
@@ -150,9 +190,52 @@
 
     </main>
 
-    <footer class="glass-panel border-t border-slate-800 py-6 text-center text-xs text-slate-500">
-        <p>© 2026 Tax & Fiscal Tools. Desarrollo independiente para uso privado y profesional.</p>
+    <!-- Footer -->
+    <footer class="glass-panel border-t border-slate-800 py-6">
+        <div class="max-w-7xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-500">
+            <p>© 2026 SAT XML Pro Reader & Tax Tools. Desarrollado para uso libre y privado.</p>
+            <div class="flex items-center space-x-6 font-medium">
+                <button onclick="toggleAboutModal()" class="hover:text-cyan-400 transition-colors">Contacto & Sobre Nosotros</button>
+            </div>
+        </div>
     </footer>
 
+    <!-- MODAL DE CONTACTO & SOBRE NOSOTROS -->
+    <div id="aboutModal" class="fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-md flex items-center justify-center p-4 hidden">
+        <div class="glass-panel rounded-2xl max-w-lg w-full p-6 sm:p-8 space-y-6 relative border border-slate-700">
+            <button onclick="toggleAboutModal()" class="absolute top-4 right-4 text-slate-400 hover:text-white text-lg">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+            
+            <h3 class="font-bold text-slate-100 text-lg border-b border-slate-800 pb-3">Contacto & Sobre Nosotros</h3>
+            
+            <div class="space-y-4 text-xs text-slate-300 leading-relaxed">
+                <div>
+                    <h4 class="font-bold text-slate-100 mb-1">Sobre el Proyecto</h4>
+                    <p>Plataforma de herramientas contables creada de forma independiente para apoyar a profesionales de la contabilidad y contribuyentes en México con soluciones gratuitas y privadas.</p>
+                </div>
+                
+                <div>
+                    <h4 class="font-bold text-slate-100 mb-1">Contacto & Soporte</h4>
+                    <p class="mb-2">Para soporte o sugerencias:</p>
+                    <ul class="space-y-1 font-mono text-cyan-400">
+                        <li>• Correo: <a href="mailto:eduardorito85@gmail.com" class="underline hover:text-cyan-300">eduardorito85@gmail.com</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="pt-2 text-right">
+                <button onclick="toggleAboutModal()" class="px-5 py-2 rounded-xl bg-cyan-500/20 text-cyan-300 border border-cyan-500/30 text-xs font-bold hover:bg-cyan-500/30 transition-all">
+                    Entendido
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function toggleAboutModal() {
+            document.getElementById('aboutModal').classList.toggle('hidden');
+        }
+    </script>
 </body>
 </html>
