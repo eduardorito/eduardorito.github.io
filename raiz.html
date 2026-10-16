@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="es" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Suite de Herramientas Fiscales SAT & Contabilidad México</title>
+    <meta name="description" content="Portal gratuito de utilidades fiscales en México: Lector de comprobantes XML/TXT CFDI y Calculadora de ISR 2026 con procesamiento masivo en Excel.">
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        darkbg: '#080c14',
+                        cardbg: '#0f172a',
+                        cyanNeon: '#00f0ff',
+                        blueNeon: '#3b82f6',
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Google Analytics 4 -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-8T4GC05LYQ"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-8T4GC05LYQ');
+    </script>
+
+    <!-- Google AdSense -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8697334409468964" crossorigin="anonymous"></script>
+
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #080c14;
+            color: #f1f5f9;
+            background-image: 
+                radial-gradient(at 10% 10%, rgba(0, 240, 255, 0.05) 0px, transparent 50%),
+                radial-gradient(at 90% 90%, rgba(59, 130, 246, 0.06) 0px, transparent 50%);
+            background-attachment: fixed;
+        }
+        .glass-panel {
+            background: rgba(15, 23, 42, 0.75);
+            backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col justify-between">
+
+    <header class="sticky top-0 z-30 glass-panel border-b border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 h-16 flex items-center justify-between">
+            <div class="flex items-center space-x-3">
+                <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-cyan-500 to-blue-600 flex items-center justify-center text-slate-950 font-black text-xl">
+                    <i class="fa-solid fa-scale-balanced"></i>
+                </div>
+                <h1 class="font-bold text-lg bg-clip-text text-transparent bg-gradient-to-r from-cyan-400 to-blue-400">
+                    Tax & Fiscal Tools Pro
+                </h1>
+            </div>
+            <a href="https://buymeacoffee.com/eduardorito" target="_blank" class="px-3.5 py-2 rounded-xl text-xs font-semibold bg-amber-500/10 text-amber-400 border border-amber-500/30 flex items-center gap-2">
+                <i class="fa-solid fa-mug-hot"></i> <span>Invítame un café</span>
+            </a>
+        </div>
+    </header>
+
+    <main class="flex-1 max-w-6xl w-full mx-auto px-4 py-8 space-y-10">
+
+        <!-- Hero Title -->
+        <section class="text-center space-y-4 max-w-3xl mx-auto">
+            <h2 class="text-3xl sm:text-4xl font-extrabold text-white">Plataforma Web de Utilidades Fiscales para México</h2>
+            <p class="text-slate-400 text-sm leading-relaxed">
+                Herramientas gratuitas de alto rendimiento diseñadas para contadores, auxiliares administrativos, nóminas y contribuyentes. Todos los procesos se realizan de forma 100% local en tu navegador para proteger tu privacidad.
+            </p>
+        </section>
+
+        <!-- Tarjetas a los Proyectos -->
+        <section class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <!-- Lector XML SAT -->
+            <div class="glass-panel rounded-2xl p-6 flex flex-col justify-between space-y-4 hover:border-cyan-500/50 transition-all">
+                <div class="space-y-3">
+                    <div class="w-12 h-12 rounded-xl bg-cyan-500/10 text-cyan-400 flex items-center justify-center text-2xl border border-cyan-500/20">
+                        <i class="fa-solid fa-file-code"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white">Lector de Facturas XML & TXT CFDI</h3>
+                    <p class="text-xs text-slate-400 leading-relaxed">
+                        Analiza comprobantes fiscales digitales en formatos CFDI 3.3, 4.0 y metadatos masivos TXT del SAT. Visualiza importes, retenciones, impuestos trasladados, emisores, receptores y genera versiones en PDF impreso con código QR oficial.
+                    </p>
+                </div>
+                <a href="/lector-xml-sat/" class="w-full py-3 rounded-xl bg-cyan-500/20 text-cyan-300 font-bold text-xs text-center border border-cyan-500/30 hover:bg-cyan-500/30 transition-all block">
+                    Abrir Lector XML SAT <i class="fa-solid fa-arrow-right ml-1"></i>
+                </a>
+            </div>
+
+            <!-- Calculadora ISR -->
+            <div class="glass-panel rounded-2xl p-6 flex flex-col justify-between space-y-4 hover:border-blue-500/50 transition-all">
+                <div class="space-y-3">
+                    <div class="w-12 h-12 rounded-xl bg-blue-500/10 text-blue-400 flex items-center justify-center text-2xl border border-blue-500/20">
+                        <i class="fa-solid fa-calculator"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white">Calculadora ISR 2026 & Masivo Excel</h3>
+                    <p class="text-xs text-slate-400 leading-relaxed">
+                        Determina la retención de Impuesto Sobre la Renta con las tarifas oficiales vigentes LISR 2026. Permite cálculo directo, despeje inverso de Neto a Bruto y procesamiento masivo de nóminas desde archivos de Excel con exportación a PDF.
+                    </p>
+                </div>
+                <a href="/calculadora-isr/" class="w-full py-3 rounded-xl bg-blue-500/20 text-blue-300 font-bold text-xs text-center border border-blue-500/30 hover:bg-blue-500/30 transition-all block">
+                    Abrir Calculadora ISR <i class="fa-solid fa-arrow-right ml-1"></i>
+                </a>
+            </div>
+        </section>
+
+        <!-- Párrafos Explicativos de Texto para Aprobar AdSense -->
+        <section class="glass-panel rounded-2xl p-6 sm:p-8 space-y-6 text-xs text-slate-300 leading-relaxed">
+            <h3 class="text-base font-bold text-white border-b border-slate-800 pb-3">Información sobre el Cumplimiento Fiscal y Tecnologías Utilizadas</h3>
+            
+            <div class="space-y-4">
+                <h4 class="font-bold text-cyan-400">¿Cómo funcionan nuestras herramientas fiscales?</h4>
+                <p>
+                    El ecosistema de herramientas disponible en este sitio web tiene como objetivo facilitar la gestión tributaria conforme a las disposiciones de la Ley del Impuesto Sobre la Renta (LISR) y el Código Fiscal de la Federación (CFF) en México. Mediante la automatización en el cliente (Browser-side Executables), permitimos la lectura de estructuras complejas XML de comprobantes fiscales digitales por Internet (CFDI) en versión 4.0, así como el desglose analítico de retenciones tributarias.
+                </p>
+
+                <h4 class="font-bold text-cyan-400">Garantía de Privacidad y Seguridad Informática</h4>
+                <p>
+                    Entendemos la sensibilidad de la información contable y financiera. Por esta razón, el 100% de los algoritmos de procesamiento de archivos (conversión de archivos XML a PDF, análisis de TXT del SAT y cálculos de nómina masivos desde libros de Microsoft Excel) se ejecutan mediante scripts en memoria dentro del navegador del usuario. Ningún archivo, dato personal o registro fiscal es transmitido a servidores ni almacenado en bases de datos externas.
+                </p>
+            </div>
+        </section>
+
+        <!-- BANNER DE ANUNCIOS DE GOOGLE ADSENSE -->
+        <section class="glass-panel rounded-2xl p-4 text-center overflow-hidden min-h-[90px] flex items-center justify-center">
+            <ins class="adsbygoogle"
+                 style="display:block"
+                 data-ad-client="ca-pub-8697334409468964"
+                 data-ad-format="auto"
+                 data-full-width-responsive="true"></ins>
+            <script>
+                 (adsbygoogle = window.adsbygoogle || []).push({});
+            </script>
+        </section>
+
+    </main>
+
+    <footer class="glass-panel border-t border-slate-800 py-6 text-center text-xs text-slate-500">
+        <p>© 2026 Tax & Fiscal Tools. Desarrollo independiente para uso privado y profesional.</p>
+    </footer>
+
+</body>
+</html>
