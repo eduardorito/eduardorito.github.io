@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Suite de Herramientas Fiscales SAT & Contabilidad México</title>
-    <meta name="description" content="Portal gratuito de utilidades fiscales en México: Lector de comprobantes XML/TXT CFDI y Calculadora de ISR 2026 con procesamiento masivo en Excel.">
+    <meta name="description" content="Portal gratuito de utilidades fiscales en México: Lector de comprobantes XML/TXT CFDI, Calculadora de ISR 2026 y Retenciones ISR/IVA con procesamiento masivo en Excel.">
     
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -36,7 +36,7 @@
       gtag('config', 'G-8T4GC05LYQ');
     </script>
 
-    <!-- Google AdSense -->
+    <!-- Google AdSense Verification Script -->
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8697334409468964" crossorigin="anonymous"></script>
 
     <style>
@@ -86,8 +86,8 @@
             </p>
         </section>
 
-        <!-- Tarjetas Principales de Selección -->
-        <section class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <!-- Tarjetas Principales de Selección (3 Herramientas) -->
+        <section class="grid grid-cols-1 md:grid-cols-3 gap-6">
             <!-- Lector XML SAT -->
             <div class="glass-panel rounded-2xl p-6 flex flex-col justify-between space-y-4 hover:border-cyan-500/50 transition-all">
                 <div class="space-y-3">
@@ -119,22 +119,58 @@
                     Abrir Calculadora ISR <i class="fa-solid fa-arrow-right ml-1"></i>
                 </a>
             </div>
+
+            <!-- Calculadora de Retenciones -->
+            <div class="glass-panel rounded-2xl p-6 flex flex-col justify-between space-y-4 hover:border-emerald-500/50 transition-all">
+                <div class="space-y-3">
+                    <div class="w-12 h-12 rounded-xl bg-emerald-500/10 text-emerald-400 flex items-center justify-center text-2xl border border-emerald-500/20">
+                        <i class="fa-solid fa-percent"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white">Calculadora de Retenciones Fiscales</h3>
+                    <p class="text-xs text-slate-400 leading-relaxed">
+                        Calcula retenciones de ISR e IVA para RESICO, Honorarios, Arrendamiento y Fletes. Permite desglose directo, cálculo inverso desde Neto y procesamiento masivo desde Microsoft Excel.
+                    </p>
+                </div>
+                <a href="https://eduardorito.github.io/retenciones-sat/" class="w-full py-3 rounded-xl bg-emerald-500/20 text-emerald-300 font-bold text-xs text-center border border-emerald-500/30 hover:bg-emerald-500/30 transition-all block">
+                    Abrir Retenciones SAT <i class="fa-solid fa-arrow-right ml-1"></i>
+                </a>
+            </div>
         </section>
 
-        <!-- Bloque de Texto de Cumplimiento Fiscal para AdSense -->
-        <section class="glass-panel rounded-2xl p-6 sm:p-8 space-y-4 text-xs text-slate-300 leading-relaxed">
-            <h3 class="text-base font-bold text-white border-b border-slate-800 pb-3">Información sobre el Cumplimiento Fiscal y Tecnologías Utilizadas</h3>
-            
-            <div class="space-y-3">
-                <h4 class="font-bold text-cyan-400">¿Cómo funcionan nuestras herramientas fiscales?</h4>
-                <p>
-                    El ecosistema de herramientas disponible en este sitio web tiene como objetivo facilitar la gestión tributaria conforme a las disposiciones de la Ley del Impuesto Sobre la Renta (LISR) y el Código Fiscal de la Federación (CFF) en México. Mediante la automatización en el cliente (Browser-side Executables), permitimos la lectura de estructuras complejas XML de comprobantes fiscales digitales por Internet (CFDI) en versión 4.0, así como el desglose analítico de retenciones tributarias.
-                </p>
+        <!-- Bloque de Texto Normativo para AdSense -->
+        <section class="glass-panel rounded-2xl p-6 sm:p-8 space-y-6 text-xs text-slate-300 leading-relaxed">
+            <h3 class="text-lg font-bold text-white border-b border-slate-800 pb-3 flex items-center gap-2">
+                <i class="fa-solid fa-book-bookmark text-cyan-400"></i> Guías Fiscales y Normativa SAT en México
+            </h3>
 
-                <h4 class="font-bold text-cyan-400">Garantía de Privacidad y Seguridad Informática</h4>
-                <p>
-                    Entendemos la sensibilidad de la información contable y financiera. Por esta razón, el 100% de los algoritmos de procesamiento de archivos (conversión de archivos XML a PDF, análisis de TXT del SAT y cálculos de nómina masivos desde libros de Microsoft Excel) se ejecutan mediante scripts en memoria dentro del navegador del usuario. Ningún archivo, dato personal o registro fiscal es transmitido a servidores ni almacenado en bases de datos externas.
-                </p>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="space-y-2">
+                    <h4 class="font-bold text-cyan-400 text-sm">1. Estructura y Validación del CFDI 4.0</h4>
+                    <p>
+                        El Comprobante Fiscal Digital por Internet (CFDI) versión 4.0 es el esquema obligatorio de facturación electrónica en México. Esta norma requiere la validación del código postal del domicilio fiscal, el régimen fiscal del emisor y receptor, así como el desglose explícito de los objetos de impuesto en cada partida presupuestal.
+                    </p>
+                </div>
+
+                <div class="space-y-2">
+                    <h4 class="font-bold text-cyan-400 text-sm">2. Mecánica de Retención del ISR e IVA (RESICO)</h4>
+                    <p>
+                        En el Régimen Simplificado de Confianza (RESICO) para Personas Físicas que presten servicios o vendan bienes a Personas Morales, la Ley del ISR establece una retención fija del 1.25% sobre el valor del subtotal, sin incluir el IVA. Adicionalmente, dependiendo del tipo de actividad económica (servicios profesionales o arrendamiento), aplican retenciones del impuesto al valor agregado conforme al CFF.
+                    </p>
+                </div>
+
+                <div class="space-y-2">
+                    <h4 class="font-bold text-cyan-400 text-sm">3. Determinación Tarifaria de ISR para Salarios</h4>
+                    <p>
+                        El cálculo del impuesto sobre la renta por salarios y conceptos asimilados se realiza aplicando las tablas progresivas de la Ley del ISR. La fórmula matemática determina el límite inferior, el excedente sujeto a porcentaje marginal y la cuota fija correspondiente para obtener el impuesto total a retener en la nómina.
+                    </p>
+                </div>
+
+                <div class="space-y-2">
+                    <h4 class="font-bold text-cyan-400 text-sm">4. Protección de Datos y Procesamiento en Cliente</h4>
+                    <p>
+                        Para dar cumplimiento a los lineamientos de ciberseguridad y confidencialidad fiscal, nuestras herramientas procesan los documentos XML y libros de Excel 100% mediante lógica en memoria en el navegador cliente (JavaScript V8 engine), previniendo cualquier filtración de datos financieros a servidores externos.
+                    </p>
+                </div>
             </div>
         </section>
 
@@ -174,18 +210,6 @@
             </div>
         </section>
 
-        <!-- BANNER DE ANUNCIOS DE GOOGLE ADSENSE -->
-        <section class="glass-panel rounded-2xl p-4 text-center overflow-hidden min-h-[90px] flex items-center justify-center">
-            <ins class="adsbygoogle"
-                 style="display:block"
-                 data-ad-client="ca-pub-8697334409468964"
-                 data-ad-format="auto"
-                 data-full-width-responsive="true"></ins>
-            <script>
-                 (adsbygoogle = window.adsbygoogle || []).push({});
-            </script>
-        </section>
-
     </main>
 
     <!-- Footer -->
@@ -193,15 +217,36 @@
         <div class="max-w-7xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-500">
             <p>© 2026 Tax & Fiscal Tools. Desarrollado para uso libre y privado.</p>
             <div class="flex items-center space-x-6 font-medium">
-                <button onclick="toggleAboutModal()" class="hover:text-cyan-400 transition-colors">Contacto & Sobre Nosotros</button>
+                <button onclick="toggleModal('privacyModal')" class="hover:text-cyan-400 transition-colors">Política de Privacidad</button>
+                <button onclick="toggleModal('aboutModal')" class="hover:text-cyan-400 transition-colors">Contacto & Sobre Nosotros</button>
             </div>
         </div>
     </footer>
 
-    <!-- MODAL DE CONTACTO & SOBRE NOSOTROS -->
+    <!-- MODAL POLÍTICA DE PRIVACIDAD -->
+    <div id="privacyModal" class="fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-md flex items-center justify-center p-4 hidden">
+        <div class="glass-panel rounded-2xl max-w-lg w-full p-6 sm:p-8 space-y-4 relative border border-slate-700 max-h-[85vh] overflow-y-auto">
+            <button onclick="toggleModal('privacyModal')" class="absolute top-4 right-4 text-slate-400 hover:text-white text-lg">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+            <h3 class="font-bold text-slate-100 text-lg border-b border-slate-800 pb-2">Política de Privacidad</h3>
+            <div class="space-y-3 text-xs text-slate-300 leading-relaxed">
+                <p>En Tax & Fiscal Tools nos tomamos muy en serio la privacidad de los usuarios. Esta política describe los términos bajo los cuales operan nuestras utilidades web.</p>
+                <h4 class="font-bold text-cyan-400">1. Procesamiento en Cliente</h4>
+                <p>Todos los documentos procesados (XML, TXT del SAT, libros de Microsoft Excel) son leídos y calculados exclusivamente de forma local dentro de la memoria RAM del navegador web del usuario. Ningún archivo o dato personal es subido, almacenado o transferido a servidores externos.</p>
+                <h4 class="font-bold text-cyan-400">2. Cookies y Publicidad de Terceros</h4>
+                <p>Este sitio web utiliza servicios de terceros como Google Analytics y Google AdSense. Google utiliza cookies para publicar anuncios basados en las visitas previas de los usuarios a este u otros sitios web. Los usuarios pueden inhabilitar la publicidad personalizada en la configuración de anuncios de Google.</p>
+            </div>
+            <div class="pt-2 text-right">
+                <button onclick="toggleModal('privacyModal')" class="px-5 py-2 rounded-xl bg-cyan-500/20 text-cyan-300 border border-cyan-500/30 text-xs font-bold">Cerrar</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL SOBRE NOSOTROS -->
     <div id="aboutModal" class="fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-md flex items-center justify-center p-4 hidden">
         <div class="glass-panel rounded-2xl max-w-lg w-full p-6 sm:p-8 space-y-6 relative border border-slate-700">
-            <button onclick="toggleAboutModal()" class="absolute top-4 right-4 text-slate-400 hover:text-white text-lg">
+            <button onclick="toggleModal('aboutModal')" class="absolute top-4 right-4 text-slate-400 hover:text-white text-lg">
                 <i class="fa-solid fa-xmark"></i>
             </button>
             
@@ -224,7 +269,7 @@
             </div>
 
             <div class="pt-2 text-right">
-                <button onclick="toggleAboutModal()" class="px-5 py-2 rounded-xl bg-cyan-500/20 text-cyan-300 border border-cyan-500/30 text-xs font-bold hover:bg-cyan-500/30 transition-all">
+                <button onclick="toggleModal('aboutModal')" class="px-5 py-2 rounded-xl bg-cyan-500/20 text-cyan-300 border border-cyan-500/30 text-xs font-bold hover:bg-cyan-500/30 transition-all">
                     Entendido
                 </button>
             </div>
@@ -232,8 +277,8 @@
     </div>
 
     <script>
-        function toggleAboutModal() {
-            document.getElementById('aboutModal').classList.toggle('hidden');
+        function toggleModal(id) {
+            document.getElementById(id).classList.toggle('hidden');
         }
     </script>
 </body>
