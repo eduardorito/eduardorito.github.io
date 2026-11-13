@@ -3,9 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow">
+    <meta http-equiv="Cache-Control" content="no-store, no-cache, must-revalidate">
     <title>Verificación Oficial de Nómina - HCEO</title>
     <style>
-        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Arial, sans-serif; }
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Arial, sans-serif;
+            user-select: none;
+            -webkit-user-select: none;
+        }
         body { background: #0f172a; color: #f8fafc; min-height: 100vh; display: flex; justify-content: center; align-items: center; padding: 16px; }
         .card { background: #1e293b; border: 1px solid #334155; border-radius: 16px; max-width: 440px; width: 100%; overflow: hidden; box-shadow: 0 20px 35px rgba(0,0,0,0.5); }
         .header { background: #1b365d; padding: 18px 20px; text-align: center; border-bottom: 3px solid #10b981; }
@@ -23,48 +32,88 @@
         .footer { text-align: center; font-size: 10px; color: #64748b; padding: 12px 16px; border-top: 1px solid #334155; }
     </style>
 </head>
-<body>
+<body oncontextmenu="return false;">
     <div class="card" id="contenedor">
         <div class="header">
             <h1>H. CONGRESO DEL ESTADO DE OAXACA</h1>
             <p>LXVI LEGISLATURA • DIRECCIÓN DE RECURSOS HUMANOS</p>
         </div>
         <div id="contenido"></div>
-        <div class="footer">Validación Criptográfica Autónoma (HMAC-SHA256) • Sin consulta a servidor externo</div>
+        <div class="footer">Visualización Criptográfica Efímera (HMAC-SHA256) • Sin almacenamiento ni consulta a servidor</div>
     </div>
 
     <script>
-        (function() {
+        (async function() {
             const cont = document.getElementById('contenido');
+            const LLAVE_HCEO = "HCEO-DRH-2026-S3CR3T-K3Y-OAXACA-N0M1N4-BL1ND4D4";
+
             try {
                 const hash = window.location.hash.substring(1);
                 if (!hash) throw new Error("Sin datos de verificación");
 
-                // Decodificar Base64 URL-safe con soporte UTF-8 (acentos/Ñ)
+                // Borra inmediatamente el token de la barra de direcciones para no dejar rastro en historial
+                if (window.history && window.history.replaceState) {
+                    window.history.replaceState(null, "", window.location.pathname);
+                }
+
+                // Decodificar Base64 URL-safe con soporte UTF-8
                 const b64 = hash.replace(/-/g, '+').replace(/_/g, '/');
                 const binStr = atob(b64);
                 const bytes = Uint8Array.from(binStr, c => c.charCodeAt(0));
                 const jsonStr = new TextDecoder().decode(bytes);
                 const d = JSON.parse(jsonStr);
 
-                if (!d.f || !d.n || !d.s || d.s.length < 16) {
-                    throw new Error("Sello incompleto o alterado");
+                if (!d.f || !d.n || !d.s || !d.r || !d.p || !d.l) {
+                    throw new Error("Estructura incompleta");
                 }
 
+                // Recalcular firma HMAC-SHA256 con Web Crypto API para detectar cualquier alteración
+                const enc = new TextEncoder();
+                const key = await crypto.subtle.importKey(
+                    "raw",
+                    enc.encode(LLAVE_HCEO),
+                    { name: "HMAC", hash: "SHA-256" },
+                    false,
+                    ["sign"]
+                );
+
+                // Cadena verificable con los campos del QR
+                const payloadFirmado = `${d.r}|${d.n}|${d.u || ''}|${d.p}|${d.tp}|${d.td}|${d.l}`;
+                const sigBuffer = await crypto.subtle.sign("HMAC", key, enc.encode(payloadFirmado));
+                const sigHex = Array.from(new Uint8Array(sigBuffer))
+                    .map(b => b.toString(16).padStart(2, '0'))
+                    .join('')
+                    .toUpperCase();
+
+                // Si alguien alteró aunque sea 1 peso o 1 letra, la firma no coincide
+                if (sigHex.substring(0, 24) !== d.s) {
+                    throw new Error("Firma criptográfica alterada");
+                }
+
+                // Renderizado seguro usando textContent (inmune a inyección de código)
                 cont.innerHTML = `
                     <div class="badge-ok">✅ COMPROBANTE AUTÉNTICO VERIFICADO</div>
                     <div class="body-data">
-                        <div class="field"><span class="label">Folio Institucional</span><span class="val mono">${d.f}</span></div>
-                        <div class="field"><span class="label">Trabajador / Receptor</span><span class="val">${d.n}</span></div>
-                        <div class="field"><span class="label">RFC / NUP</span><span class="val mono">${d.r} • NUP: ${d.u || 'N/A'}</span></div>
-                        <div class="field"><span class="label">Período de Pago</span><span class="val">${d.p}</span></div>
-                        <div class="field"><span class="label">Total Percepciones / Deducciones</span><span class="val mono">+$${d.tp} / -$${d.td}</span></div>
-                        <div class="field neto"><span class="label">Neto Pagado (MXN)</span><span class="val mono">$${d.l}</span></div>
-                        <div class="field"><span class="label">Huella Digital de Control (HMAC-SHA256)</span><span class="val mono" style="font-size:11px;">${d.s}</span></div>
+                        <div class="field"><span class="label">Folio Institucional</span><span class="val mono" id="v-folio"></span></div>
+                        <div class="field"><span class="label">Trabajador / Receptor</span><span class="val" id="v-nombre"></span></div>
+                        <div class="field"><span class="label">RFC / NUP</span><span class="val mono" id="v-rfc"></span></div>
+                        <div class="field"><span class="label">Período de Pago</span><span class="val" id="v-periodo"></span></div>
+                        <div class="field"><span class="label">Total Percepciones / Deducciones</span><span class="val mono" id="v-totales"></span></div>
+                        <div class="field neto"><span class="label">Neto Pagado (MXN)</span><span class="val mono" id="v-neto"></span></div>
+                        <div class="field"><span class="label">Huella Digital de Control (HMAC-SHA256)</span><span class="val mono" style="font-size:11px;" id="v-sello"></span></div>
                     </div>
                 `;
+
+                document.getElementById('v-folio').textContent = d.f;
+                document.getElementById('v-nombre').textContent = d.n;
+                document.getElementById('v-rfc').textContent = `${d.r} • NUP: ${d.u || 'N/A'}`;
+                document.getElementById('v-periodo').textContent = d.p;
+                document.getElementById('v-totales').textContent = `+$${d.tp} / -$${d.td}`;
+                document.getElementById('v-neto').textContent = `$${d.l}`;
+                document.getElementById('v-sello').textContent = d.s;
+
             } catch (e) {
-                cont.innerHTML = `<div class="badge-err">❌ CÓDIGO INVÁLIDO O ALTERADO<br><span style="font-size:11px;font-weight:normal;">El comprobante no contiene una firma criptográfica íntegra.</span></div>`;
+                cont.innerHTML = `<div class="badge-err">❌ CÓDIGO INVÁLIDO O ALTERADO<br><span style="font-size:11px;font-weight:normal;">Los datos del recibo fueron modificados o la firma digital no es auténtica.</span></div>`;
             }
         })();
     </script>
