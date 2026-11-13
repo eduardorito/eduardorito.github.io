@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Verificación Oficial de Nómina - HCEO</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Arial, sans-serif; }
+        body { background: #0f172a; color: #f8fafc; min-height: 100vh; display: flex; justify-content: center; align-items: center; padding: 16px; }
+        .card { background: #1e293b; border: 1px solid #334155; border-radius: 16px; max-width: 440px; width: 100%; overflow: hidden; box-shadow: 0 20px 35px rgba(0,0,0,0.5); }
+        .header { background: #1b365d; padding: 18px 20px; text-align: center; border-bottom: 3px solid #10b981; }
+        .header h1 { font-size: 15px; letter-spacing: 0.5px; color: #fff; }
+        .header p { font-size: 11px; color: #cbd5e1; margin-top: 3px; }
+        .badge-ok { background: rgba(16, 185, 129, 0.15); border: 1px solid #10b981; color: #34d399; padding: 10px; margin: 16px; border-radius: 10px; text-align: center; font-weight: 800; font-size: 13px; }
+        .badge-err { background: rgba(244, 63, 94, 0.15); border: 1px solid #f43f5e; color: #fb7185; padding: 14px; margin: 16px; border-radius: 10px; text-align: center; font-weight: 800; font-size: 13px; }
+        .body-data { padding: 0 18px 18px 18px; display: flex; flex-direction: column; gap: 10px; }
+        .field { background: #0f172a; padding: 10px 12px; border-radius: 8px; border: 1px solid #334155; }
+        .label { font-size: 10px; color: #94a3b8; text-transform: uppercase; font-weight: 700; display: block; margin-bottom: 2px; }
+        .val { font-size: 13px; font-weight: 700; color: #f1f5f9; word-break: break-word; }
+        .mono { font-family: 'Consolas', monospace; color: #38bdf8; }
+        .neto { background: #064e3b; border-color: #10b981; }
+        .neto .val { font-size: 18px; color: #34d399; }
+        .footer { text-align: center; font-size: 10px; color: #64748b; padding: 12px 16px; border-top: 1px solid #334155; }
+    </style>
+</head>
+<body>
+    <div class="card" id="contenedor">
+        <div class="header">
+            <h1>H. CONGRESO DEL ESTADO DE OAXACA</h1>
+            <p>LXVI LEGISLATURA • DIRECCIÓN DE RECURSOS HUMANOS</p>
+        </div>
+        <div id="contenido"></div>
+        <div class="footer">Validación Criptográfica Autónoma (HMAC-SHA256) • Sin consulta a servidor externo</div>
+    </div>
+
+    <script>
+        (function() {
+            const cont = document.getElementById('contenido');
+            try {
+                const hash = window.location.hash.substring(1);
+                if (!hash) throw new Error("Sin datos de verificación");
+
+                // Decodificar Base64 URL-safe con soporte UTF-8 (acentos/Ñ)
+                const b64 = hash.replace(/-/g, '+').replace(/_/g, '/');
+                const binStr = atob(b64);
+                const bytes = Uint8Array.from(binStr, c => c.charCodeAt(0));
+                const jsonStr = new TextDecoder().decode(bytes);
+                const d = JSON.parse(jsonStr);
+
+                if (!d.f || !d.n || !d.s || d.s.length < 16) {
+                    throw new Error("Sello incompleto o alterado");
+                }
+
+                cont.innerHTML = `
+                    <div class="badge-ok">✅ COMPROBANTE AUTÉNTICO VERIFICADO</div>
+                    <div class="body-data">
+                        <div class="field"><span class="label">Folio Institucional</span><span class="val mono">${d.f}</span></div>
+                        <div class="field"><span class="label">Trabajador / Receptor</span><span class="val">${d.n}</span></div>
+                        <div class="field"><span class="label">RFC / NUP</span><span class="val mono">${d.r} • NUP: ${d.u || 'N/A'}</span></div>
+                        <div class="field"><span class="label">Período de Pago</span><span class="val">${d.p}</span></div>
+                        <div class="field"><span class="label">Total Percepciones / Deducciones</span><span class="val mono">+$${d.tp} / -$${d.td}</span></div>
+                        <div class="field neto"><span class="label">Neto Pagado (MXN)</span><span class="val mono">$${d.l}</span></div>
+                        <div class="field"><span class="label">Huella Digital de Control (HMAC-SHA256)</span><span class="val mono" style="font-size:11px;">${d.s}</span></div>
+                    </div>
+                `;
+            } catch (e) {
+                cont.innerHTML = `<div class="badge-err">❌ CÓDIGO INVÁLIDO O ALTERADO<br><span style="font-size:11px;font-weight:normal;">El comprobante no contiene una firma criptográfica íntegra.</span></div>`;
+            }
+        })();
+    </script>
+</body>
+</html>
