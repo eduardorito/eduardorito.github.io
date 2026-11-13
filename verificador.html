@@ -39,60 +39,75 @@
             <p>LXVI LEGISLATURA • DIRECCIÓN DE RECURSOS HUMANOS</p>
         </div>
         <div id="contenido"></div>
-        <div class="footer">Visualización Criptográfica Efímera (HMAC-SHA256) • Sin almacenamiento ni consulta a servidor</div>
+        <div class="footer">Verificación Asimétrica ECDSA P-256 • Sin almacenamiento ni consulta a servidor</div>
     </div>
 
     <script>
         (async function() {
             const cont = document.getElementById('contenido');
-            const LLAVE_HCEO = `-----BEGIN PUBLIC KEY-----MFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAEOdZ+cab127mgCmBHwRLuGxW8u2nF
-                                QBQcIfS0WpGt4fodOPE+HIkEE5tIy+9Tqa9sHAnjM1DXQAaPU5p5wmeKlg==
-                                -----END PUBLIC KEY-----`;
+
+            // AQUÍ VA TU LLAVE PÚBLICA (ENCERRADA ENTRE ACENTOS GRAVES ` `)
+            const LLAVE_PUBLICA_PEM = `-----BEGIN PUBLIC KEY-----
+MFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAEb0c0ICmNlpJIflakvQ+0PP81+fN6
+qKn4HLsDVFsvs0TBxlqF8EhpAlyDTIMwowP21LzU9o5QWR3gn2HjOCPs7w==
+-----END PUBLIC KEY-----`;
+
+            function base64UrlToUint8Array(b64Url) {
+                let b64 = b64Url.replace(/-/g, '+').replace(/_/g, '/');
+                while (b64.length % 4 !== 0) b64 += '=';
+                const binStr = atob(b64);
+                return Uint8Array.from(binStr, c => c.charCodeAt(0));
+            }
+
+            function pemToArrayBuffer(pem) {
+                const b64 = pem.replace(/-----BEGIN PUBLIC KEY-----/, '')
+                               .replace(/-----END PUBLIC KEY-----/, '')
+                               .replace(/\s+/g, '');
+                const binStr = atob(b64);
+                const bytes = new Uint8Array(binStr.length);
+                for (let i = 0; i < binStr.length; i++) bytes[i] = binStr.charCodeAt(i);
+                return bytes.buffer;
+            }
 
             try {
                 const hash = window.location.hash.substring(1);
                 if (!hash) throw new Error("Sin datos de verificación");
 
-                // Borra inmediatamente el token de la barra de direcciones para no dejar rastro en historial
                 if (window.history && window.history.replaceState) {
                     window.history.replaceState(null, "", window.location.pathname);
                 }
 
-                // Decodificar Base64 URL-safe con soporte UTF-8
-                const b64 = hash.replace(/-/g, '+').replace(/_/g, '/');
-                const binStr = atob(b64);
-                const bytes = Uint8Array.from(binStr, c => c.charCodeAt(0));
-                const jsonStr = new TextDecoder().decode(bytes);
+                const jsonBytes = base64UrlToUint8Array(hash);
+                const jsonStr = new TextDecoder().decode(jsonBytes);
                 const d = JSON.parse(jsonStr);
 
                 if (!d.f || !d.n || !d.s || !d.r || !d.p || !d.l) {
                     throw new Error("Estructura incompleta");
                 }
 
-                // Recalcular firma HMAC-SHA256 con Web Crypto API para detectar cualquier alteración
-                const enc = new TextEncoder();
-                const key = await crypto.subtle.importKey(
-                    "raw",
-                    enc.encode(LLAVE_HCEO),
-                    { name: "HMAC", hash: "SHA-256" },
+                const pubKey = await crypto.subtle.importKey(
+                    "spki",
+                    pemToArrayBuffer(LLAVE_PUBLICA_PEM),
+                    { name: "ECDSA", namedCurve: "P-256" },
                     false,
-                    ["sign"]
+                    ["verify"]
                 );
 
-                // Cadena verificable con los campos del QR
+                const enc = new TextEncoder();
                 const payloadFirmado = `${d.r}|${d.n}|${d.u || ''}|${d.p}|${d.tp}|${d.td}|${d.l}`;
-                const sigBuffer = await crypto.subtle.sign("HMAC", key, enc.encode(payloadFirmado));
-                const sigHex = Array.from(new Uint8Array(sigBuffer))
-                    .map(b => b.toString(16).padStart(2, '0'))
-                    .join('')
-                    .toUpperCase();
+                const firmaBytes = base64UrlToUint8Array(d.s);
 
-                // Si alguien alteró aunque sea 1 peso o 1 letra, la firma no coincide
-                if (sigHex.substring(0, 24) !== d.s) {
-                    throw new Error("Firma criptográfica alterada");
+                const esValido = await crypto.subtle.verify(
+                    { name: "ECDSA", hash: { name: "SHA-256" } },
+                    pubKey,
+                    firmaBytes,
+                    enc.encode(payloadFirmado)
+                );
+
+                if (!esValido) {
+                    throw new Error("Firma digital ECDSA inválida o alterada");
                 }
 
-                // Renderizado seguro usando textContent (inmune a inyección de código)
                 cont.innerHTML = `
                     <div class="badge-ok">✅ COMPROBANTE AUTÉNTICO VERIFICADO</div>
                     <div class="body-data">
@@ -102,7 +117,7 @@
                         <div class="field"><span class="label">Período de Pago</span><span class="val" id="v-periodo"></span></div>
                         <div class="field"><span class="label">Total Percepciones / Deducciones</span><span class="val mono" id="v-totales"></span></div>
                         <div class="field neto"><span class="label">Neto Pagado (MXN)</span><span class="val mono" id="v-neto"></span></div>
-                        <div class="field"><span class="label">Huella Digital de Control (HMAC-SHA256)</span><span class="val mono" style="font-size:11px;" id="v-sello"></span></div>
+                        <div class="field"><span class="label">Firma Asimétrica ECDSA P-256</span><span class="val mono" style="font-size:10px;" id="v-sello"></span></div>
                     </div>
                 `;
 
@@ -112,10 +127,10 @@
                 document.getElementById('v-periodo').textContent = d.p;
                 document.getElementById('v-totales').textContent = `+$${d.tp} / -$${d.td}`;
                 document.getElementById('v-neto').textContent = `$${d.l}`;
-                document.getElementById('v-sello').textContent = d.s;
+                document.getElementById('v-sello').textContent = d.s.substring(0, 36) + "...";
 
             } catch (e) {
-                cont.innerHTML = `<div class="badge-err">❌ CÓDIGO INVÁLIDO O ALTERADO<br><span style="font-size:11px;font-weight:normal;">Los datos del recibo fueron modificados o la firma digital no es auténtica.</span></div>`;
+                cont.innerHTML = `<div class="badge-err">❌ CÓDIGO INVÁLIDO O ALTERADO<br><span style="font-size:11px;font-weight:normal;">La firma criptográfica ECDSA no corresponde a un comprobante oficial del H. Congreso del Estado de Oaxaca.</span></div>`;
             }
         })();
     </script>
