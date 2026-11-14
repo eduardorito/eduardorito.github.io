@@ -22,7 +22,6 @@
         .header p { font-size: 11px; color: #cbd5e1; margin-top: 3px; }
         .badge-ok { background: rgba(16, 185, 129, 0.15); border: 1px solid #10b981; color: #34d399; padding: 10px; margin: 16px; border-radius: 10px; text-align: center; font-weight: 800; font-size: 13px; }
         .badge-err { background: rgba(244, 63, 94, 0.15); border: 1px solid #f43f5e; color: #fb7185; padding: 14px; margin: 16px; border-radius: 10px; text-align: center; font-weight: 800; font-size: 13px; }
-        .debug-msg { margin-top: 8px; padding: 6px; background: rgba(0,0,0,0.3); border-radius: 6px; font-family: 'Consolas', monospace; font-size: 10px; color: #fde047; font-weight: normal; word-break: break-word; }
         .body-data { padding: 0 18px 18px 18px; display: flex; flex-direction: column; gap: 10px; }
         .field { background: #0f172a; padding: 10px 12px; border-radius: 8px; border: 1px solid #334155; }
         .label { font-size: 10px; color: #94a3b8; text-transform: uppercase; font-weight: 700; display: block; margin-bottom: 2px; }
@@ -73,40 +72,34 @@ qKn4HLsDVFsvs0TBxlqF8EhpAlyDTIMwowP21LzU9o5QWR3gn2HjOCPs7w==
 
             try {
                 const hash = window.location.hash.substring(1);
-                if (!hash) throw new Error("Paso 1: El enlace no trae datos después del # (hash vacío).");
+                if (!hash) throw new Error("Sin datos");
 
-                let d;
-                try {
-                    const jsonBytes = base64UrlToUint8Array(hash);
-                    const jsonStr = new TextDecoder().decode(jsonBytes);
-                    d = JSON.parse(jsonStr);
-                } catch (errJson) {
-                    throw new Error("Paso 2: No se pudo decodificar el JSON del QR (" + errJson.message + ")");
+                if (window.history && window.history.replaceState) {
+                    window.history.replaceState(null, "", window.location.pathname);
                 }
+
+                const jsonBytes = base64UrlToUint8Array(hash);
+                const jsonStr = new TextDecoder().decode(jsonBytes);
+                const d = JSON.parse(jsonStr);
 
                 if (!d.f || !d.n || !d.s || !d.r || !d.p || !d.l) {
-                    throw new Error("Paso 3: Faltan campos obligatorios en el QR.");
+                    throw new Error("Incompleto");
                 }
 
-                let pubKey;
-                try {
-                    pubKey = await crypto.subtle.importKey(
-                        "spki",
-                        pemToArrayBuffer(LLAVE_PUBLICA_PEM),
-                        { name: "ECDSA", namedCurve: "P-256" },
-                        false,
-                        ["verify"]
-                    );
-                } catch (errKey) {
-                    throw new Error("Paso 4: Error en el formato de LLAVE_PUBLICA_PEM (" + errKey.message + ")");
-                }
+                const pubKey = await crypto.subtle.importKey(
+                    "spki",
+                    pemToArrayBuffer(LLAVE_PUBLICA_PEM),
+                    { name: "ECDSA", namedCurve: "P-256" },
+                    false,
+                    ["verify"]
+                );
 
                 const enc = new TextEncoder();
                 const payloadFirmado = `${d.r}|${d.n}|${d.u || ''}|${d.p}|${d.tp}|${d.td}|${d.l}`;
                 const firmaBytes = base64UrlToUint8Array(d.s);
 
                 if (firmaBytes.length !== 64) {
-                    throw new Error("Paso 5: El sello no es ECDSA de 64 bytes (mide " + firmaBytes.length + " bytes). Es probable que el QR sea de una versión anterior.");
+                    throw new Error("Firma inválida");
                 }
 
                 const esValido = await crypto.subtle.verify(
@@ -117,12 +110,7 @@ qKn4HLsDVFsvs0TBxlqF8EhpAlyDTIMwowP21LzU9o5QWR3gn2HjOCPs7w==
                 );
 
                 if (!esValido) {
-                    throw new Error("Paso 6: La firma ECDSA no coincide con la Llave Pública configurada.");
-                }
-
-                // Limpiar URL solo si la verificación fue exitosa
-                if (window.history && window.history.replaceState) {
-                    window.history.replaceState(null, "", window.location.pathname);
+                    throw new Error("Firma alterada");
                 }
 
                 cont.innerHTML = `
@@ -149,8 +137,8 @@ qKn4HLsDVFsvs0TBxlqF8EhpAlyDTIMwowP21LzU9o5QWR3gn2HjOCPs7w==
             } catch (e) {
                 cont.innerHTML = `
                     <div class="badge-err">
-                        ❌ CÓDIGO INVÁLIDO O ALTERADO
-                        <div class="debug-msg">${e.message}</div>
+                        ❌ CÓDIGO INVÁLIDO O ALTERADO<br>
+                        <span style="font-size:11px;font-weight:normal;">La firma criptográfica ECDSA no corresponde a un comprobante oficial del H. Congreso del Estado de Oaxaca.</span>
                     </div>`;
             }
         })();
