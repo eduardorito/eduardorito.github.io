@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Suite de Herramientas Fiscales SAT & Contabilidad México</title>
-    <meta name="description" content="Portal gratuito de utilidades fiscales en México: Lector de comprobantes XML/TXT CFDI, Calculadora de ISR 2026 y Retenciones ISR/IVA con procesamiento masivo en Excel.">
+    <meta name="description" content="Portal gratuito de utilidades fiscales en México: Lector de comprobantes XML/TXT CFDI, Calculadora de ISR 2026, Calculadora de Nómina Integral y Retenciones ISR/IVA con procesamiento masivo en Excel.">
     
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -76,7 +76,7 @@
     </header>
 
     <!-- Main Container -->
-    <main class="flex-1 max-w-6xl w-full mx-auto px-4 py-8 space-y-10">
+    <main class="flex-1 max-w-7xl w-full mx-auto px-4 py-8 space-y-10">
 
         <!-- Hero Title -->
         <section class="text-center space-y-4 max-w-3xl mx-auto pt-4">
@@ -86,8 +86,8 @@
             </p>
         </section>
 
-        <!-- Tarjetas Principales de Selección (3 Herramientas) -->
-        <section class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <!-- Tarjetas Principales de Selección (4 Herramientas) -->
+        <section class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             <!-- Lector XML SAT -->
             <div class="glass-panel rounded-2xl p-6 flex flex-col justify-between space-y-4 hover:border-cyan-500/50 transition-all">
                 <div class="space-y-3">
@@ -96,7 +96,7 @@
                     </div>
                     <h3 class="text-xl font-bold text-white">Lector de Facturas XML & TXT CFDI</h3>
                     <p class="text-xs text-slate-400 leading-relaxed">
-                        Analiza comprobantes fiscales digitales en formatos CFDI 3.3, 4.0 y metadatos masivos TXT del SAT. Visualiza importes, retenciones, impuestos trasladados, emisores, receptores y genera versiones en PDF impreso con código QR oficial.
+                        Analiza comprobantes fiscales digitales CFDI 3.3, 4.0 y metadatos masivos TXT del SAT. Visualiza importes, retenciones, impuestos, recibos de nómina y genera versiones en PDF con QR oficial.
                     </p>
                 </div>
                 <a href="https://eduardorito.github.io/lector-xml-sat/" class="w-full py-3 rounded-xl bg-cyan-500/20 text-cyan-300 font-bold text-xs text-center border border-cyan-500/30 hover:bg-cyan-500/30 transition-all block">
@@ -112,11 +112,27 @@
                     </div>
                     <h3 class="text-xl font-bold text-white">Calculadora ISR 2026 & Masivo Excel</h3>
                     <p class="text-xs text-slate-400 leading-relaxed">
-                        Determina la retención de Impuesto Sobre la Renta con las tarifas oficiales vigentes LISR 2026. Permite cálculo directo, despeje inverso de Neto a Bruto y procesamiento masivo de nóminas desde archivos de Excel con exportación a PDF.
+                        Determina la retención de Impuesto Sobre la Renta con las tarifas oficiales vigentes LISR 2026. Permite cálculo directo, despeje inverso de Neto a Bruto y procesamiento masivo desde Excel.
                     </p>
                 </div>
                 <a href="https://eduardorito.github.io/calculadora-isr/" class="w-full py-3 rounded-xl bg-blue-500/20 text-blue-300 font-bold text-xs text-center border border-blue-500/30 hover:bg-blue-500/30 transition-all block">
                     Abrir Calculadora ISR <i class="fa-solid fa-arrow-right ml-1"></i>
+                </a>
+            </div>
+
+            <!-- Calculadora de Nómina Integral -->
+            <div class="glass-panel rounded-2xl p-6 flex flex-col justify-between space-y-4 hover:border-purple-500/50 transition-all">
+                <div class="space-y-3">
+                    <div class="w-12 h-12 rounded-xl bg-purple-500/10 text-purple-400 flex items-center justify-center text-2xl border border-purple-500/20">
+                        <i class="fa-solid fa-users-gear"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white">Calculadora de Nómina Integral</h3>
+                    <p class="text-xs text-slate-400 leading-relaxed">
+                        Calcula nóminas masivas desde Excel partiendo del SBC hacia SD y Base Gravable. Determina ISR 2026, Subsidio al Empleo, Cuota Obrera IMSS y Sueldo Neto con reporte ejecutivo en PDF.
+                    </p>
+                </div>
+                <a href="https://eduardorito.github.io/calculadora-nomina/" class="w-full py-3 rounded-xl bg-purple-500/20 text-purple-300 font-bold text-xs text-center border border-purple-500/30 hover:bg-purple-500/30 transition-all block">
+                    Abrir Calculadora Nómina <i class="fa-solid fa-arrow-right ml-1"></i>
                 </a>
             </div>
 
@@ -215,10 +231,10 @@
     <!-- Footer -->
     <footer class="glass-panel border-t border-slate-800 py-6">
         <div class="max-w-7xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-500">
-            <p>© 2026 Tax & Fiscal Tools. Desarrollado para uso libre y privado.</p>
+            <p>© 2026 Tax & Fiscal Tools Pro. Desarrollado para uso libre y privado.</p>
             <div class="flex items-center space-x-6 font-medium">
-                <button onclick="toggleModal('privacyModal')" class="hover:text-cyan-400 transition-colors">Política de Privacidad</button>
-                <button onclick="toggleModal('aboutModal')" class="hover:text-cyan-400 transition-colors">Contacto & Sobre Nosotros</button>
+                <a href="https://eduardorito.github.io/privacidad.html" class="hover:text-cyan-400 transition-colors">Política de Privacidad</a>
+                <a href="https://eduardorito.github.io/contacto.html" class="hover:text-cyan-400 transition-colors">Contacto & Sobre Nosotros</a>
             </div>
         </div>
     </footer>
