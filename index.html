@@ -3,8 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Suite de Herramientas Fiscales SAT & Contabilidad México</title>
-    <meta name="description" content="Portal gratuito de utilidades fiscales en México: Lector de comprobantes XML/TXT CFDI, Calculadora de ISR 2026, Calculadora de Nómina Integral y Retenciones ISR/IVA con procesamiento masivo en Excel.">
+    <title>Suite de Herramientas Fiscales SAT & Contabilidad México 2026</title>
+    <meta name="description" content="Portal gratuito de utilidades fiscales en México: Lector de comprobantes XML/TXT CFDI 4.0, Calculadora de ISR 2026, Calculadora de Nómina Integral y Retenciones ISR/IVA con procesamiento masivo en Excel.">
+    <link rel="canonical" href="https://eduardorito.github.io/">
     
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -60,18 +61,37 @@
 
     <!-- Header / Navbar -->
     <header class="sticky top-0 z-30 glass-panel border-b border-slate-800">
-        <div class="max-w-7xl mx-auto px-4 h-16 flex items-center justify-between">
+        <div class="max-w-7xl mx-auto px-4 py-3 flex flex-wrap items-center justify-between gap-3">
             <div class="flex items-center space-x-3">
-                <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-cyan-500 to-blue-600 flex items-center justify-center text-slate-950 font-black text-xl">
+                <a href="https://eduardorito.github.io/" class="w-10 h-10 rounded-xl bg-gradient-to-tr from-cyan-500 to-blue-600 flex items-center justify-center text-slate-950 font-black text-xl shadow-lg shadow-cyan-500/20">
                     <i class="fa-solid fa-scale-balanced"></i>
+                </a>
+                <div>
+                    <h1 class="font-bold text-base sm:text-lg bg-clip-text text-transparent bg-gradient-to-r from-cyan-400 to-blue-400">
+                        Tax & Fiscal Tools Pro
+                    </h1>
+                    <p class="text-[11px] text-slate-400 font-medium hidden sm:block">Suite Contable y Fiscal CFDI 4.0 · LISR · IMSS</p>
                 </div>
-                <h1 class="font-bold text-lg bg-clip-text text-transparent bg-gradient-to-r from-cyan-400 to-blue-400">
-                    Tax & Fiscal Tools Pro
-                </h1>
             </div>
-            <a href="https://buymeacoffee.com/eduardorito" target="_blank" rel="noopener noreferrer" class="px-3.5 py-2 rounded-xl text-xs font-semibold bg-amber-500/10 text-amber-400 border border-amber-500/30 hover:bg-amber-500/20 transition-all flex items-center gap-2">
-                <i class="fa-solid fa-mug-hot"></i> <span>Invítame un café</span>
-            </a>
+
+            <!-- Navegación Principal -->
+            <nav aria-label="Navegación principal" class="flex flex-wrap items-center gap-2 text-xs font-semibold">
+                <a href="https://eduardorito.github.io/lector-xml-sat/" class="px-3 py-1.5 rounded-lg bg-slate-800/80 text-slate-300 hover:text-cyan-400 border border-slate-700/60 transition-all">
+                    Lector XML
+                </a>
+                <a href="https://eduardorito.github.io/calculadora-isr/" class="px-3 py-1.5 rounded-lg bg-slate-800/80 text-slate-300 hover:text-cyan-400 border border-slate-700/60 transition-all">
+                    Calc. ISR
+                </a>
+                <a href="https://eduardorito.github.io/calculado-nomina.html" class="px-3 py-1.5 rounded-lg bg-slate-800/80 text-slate-300 hover:text-cyan-400 border border-slate-700/60 transition-all">
+                    Nómina
+                </a>
+                <a href="https://eduardorito.github.io/retenciones-sat/" class="px-3 py-1.5 rounded-lg bg-slate-800/80 text-slate-300 hover:text-cyan-400 border border-slate-700/60 transition-all">
+                    Retenciones
+                </a>
+                <a href="https://buymeacoffee.com/eduardorito" target="_blank" rel="noopener noreferrer" class="px-3.5 py-1.5 rounded-xl bg-amber-500/10 text-amber-400 border border-amber-500/30 hover:bg-amber-500/20 transition-all flex items-center gap-1.5">
+                    <i class="fa-solid fa-mug-hot"></i> <span>Invítame un café</span>
+                </a>
+            </nav>
         </div>
     </header>
 
@@ -80,9 +100,12 @@
 
         <!-- Hero Title -->
         <section class="text-center space-y-4 max-w-3xl mx-auto pt-4">
+            <span class="inline-block px-3 py-1 rounded-full text-[11px] font-bold uppercase tracking-wider bg-cyan-500/10 text-cyan-400 border border-cyan-500/30">
+                Legislación Fiscal México 2026 · 100% Client-Side
+            </span>
             <h2 class="text-3xl sm:text-4xl font-extrabold text-white">Plataforma Web de Utilidades Fiscales para México</h2>
             <p class="text-slate-400 text-sm leading-relaxed">
-                Herramientas gratuitas de alto rendimiento diseñadas para contadores, auxiliares administrativos, nóminas y contribuyentes. Todos los procesos se realizan de forma 100% local en tu navegador para proteger tu privacidad.
+                Herramientas gratuitas de alto rendimiento diseñadas para contadores, auxiliares administrativos, encargados de nómina y contribuyentes. Todos los procesos se ejecutan localmente en la memoria de tu navegador para proteger la confidencialidad de tus datos.
             </p>
         </section>
 
@@ -131,7 +154,7 @@
                         Calcula nóminas masivas desde Excel partiendo del SBC hacia SD y Base Gravable. Determina ISR 2026, Subsidio al Empleo, Cuota Obrera IMSS y Sueldo Neto con reporte ejecutivo en PDF.
                     </p>
                 </div>
-                <a href="https://eduardorito.github.io/calculado-nomina.html/" class="w-full py-3 rounded-xl bg-purple-500/20 text-purple-300 font-bold text-xs text-center border border-purple-500/30 hover:bg-purple-500/30 transition-all block">
+                <a href="https://eduardorito.github.io/calculado-nomina.html" class="w-full py-3 rounded-xl bg-purple-500/20 text-purple-300 font-bold text-xs text-center border border-purple-500/30 hover:bg-purple-500/30 transition-all block">
                     Abrir Calculadora Nómina <i class="fa-solid fa-arrow-right ml-1"></i>
                 </a>
             </div>
@@ -153,42 +176,57 @@
             </div>
         </section>
 
-        <!-- Bloque de Texto Normativo para AdSense -->
-        <section class="glass-panel rounded-2xl p-6 sm:p-8 space-y-6 text-xs text-slate-300 leading-relaxed">
+        <!-- Bloque de Texto Normativo -->
+        <article class="glass-panel rounded-2xl p-6 sm:p-8 space-y-6 text-xs text-slate-300 leading-relaxed">
             <h3 class="text-lg font-bold text-white border-b border-slate-800 pb-3 flex items-center gap-2">
-                <i class="fa-solid fa-book-bookmark text-cyan-400"></i> Guías Fiscales y Normativa SAT en México
+                <i class="fa-solid fa-book-bookmark text-cyan-400"></i> Guías Fiscales y Normativa SAT en México 2026
             </h3>
 
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div class="space-y-2">
                     <h4 class="font-bold text-cyan-400 text-sm">1. Estructura y Validación del CFDI 4.0</h4>
                     <p>
-                        El Comprobante Fiscal Digital por Internet (CFDI) versión 4.0 es el esquema obligatorio de facturación electrónica en México. Esta norma requiere la validación del código postal del domicilio fiscal, el régimen fiscal del emisor y receptor, así como el desglose explícito de los objetos de impuesto en cada partida presupuestal.
+                        El Comprobante Fiscal Digital por Internet (CFDI) versión 4.0 es el esquema obligatorio de facturación electrónica en México. Esta norma requiere la validación del código postal del domicilio fiscal, el régimen fiscal del emisor y receptor, así como el desglose explícito de los objetos de impuesto en cada concepto o partida presupuestal.
                     </p>
                 </div>
 
                 <div class="space-y-2">
-                    <h4 class="font-bold text-cyan-400 text-sm">2. Mecánica de Retención del ISR e IVA (RESICO)</h4>
+                    <h4 class="font-bold text-cyan-400 text-sm">2. Mecánica de Retención del ISR e IVA (RESICO y Honorarios)</h4>
                     <p>
-                        En el Régimen Simplificado de Confianza (RESICO) para Personas Físicas que presten servicios o vendan bienes a Personas Morales, la Ley del ISR establece una retención fija del 1.25% sobre el valor del subtotal, sin incluir el IVA. Adicionalmente, dependiendo del tipo de actividad económica (servicios profesionales o arrendamiento), aplican retenciones del impuesto al valor agregado conforme al CFF.
+                        En el Régimen Simplificado de Confianza (RESICO) para Personas Físicas que presten servicios o enajenen bienes a Personas Morales, la Ley del ISR establece una retención fija del 1.25% sobre el subtotal, sin incluir el IVA. Para servicios profesionales independientes y arrendamiento aplica la retención del 10% de ISR y las dos terceras partes del IVA trasladado, mientras que en autotransporte terrestre de carga aplica el 4% de retención de IVA.
                     </p>
                 </div>
 
                 <div class="space-y-2">
-                    <h4 class="font-bold text-cyan-400 text-sm">3. Determinación Tarifaria de ISR para Salarios</h4>
+                    <h4 class="font-bold text-cyan-400 text-sm">3. Determinación Tarifaria de ISR y Cuotas Obreras IMSS</h4>
                     <p>
-                        El cálculo del impuesto sobre la renta por salarios y conceptos asimilados se realiza aplicando las tablas progresivas de la Ley del ISR. La fórmula matemática determina el límite inferior, el excedente sujeto a porcentaje marginal y la cuota fija correspondiente para obtener el impuesto total a retener en la nómina.
+                        El cálculo del impuesto sobre la renta por salarios y conceptos asimilados se realiza aplicando las tablas progresivas del Artículo 96 de la LISR 2026, considerando el límite inferior, el excedente sujeto a tasa marginal, la cuota fija y el acreditamiento del Subsidio para el Empleo vigente. Complementariamente, en nómina se determinan las cuotas obreras IMSS sobre el Salario Base de Cotización (SBC) y los factores de integración por antigüedad conforme a la Ley Federal del Trabajo.
                     </p>
                 </div>
 
                 <div class="space-y-2">
                     <h4 class="font-bold text-cyan-400 text-sm">4. Protección de Datos y Procesamiento en Cliente</h4>
                     <p>
-                        Para dar cumplimiento a los lineamientos de ciberseguridad y confidencialidad fiscal, nuestras herramientas procesan los documentos XML y libros de Excel 100% mediante lógica en memoria en el navegador cliente (JavaScript V8 engine), previniendo cualquier filtración de datos financieros a servidores externos.
+                        Para dar cumplimiento a los lineamientos de ciberseguridad y confidencialidad fiscal, nuestras herramientas procesan los documentos XML, TXT y libros de Excel 100% mediante lógica en memoria en el navegador cliente (JavaScript V8 y Web Crypto API), previniendo cualquier filtración de información financiera o nómina a servidores externos.
                     </p>
                 </div>
             </div>
-        </section>
+
+            <!-- Preguntas Frecuentes de la Suite -->
+            <div class="pt-4 border-t border-slate-800 space-y-4">
+                <h4 class="text-white font-bold text-base">Preguntas Frecuentes sobre el Portal Fiscal</h4>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div class="bg-slate-900/50 p-4 rounded-xl border border-slate-800/80 space-y-1.5">
+                        <h5 class="font-bold text-slate-200">¿Los cálculos y archivos subidos se guardan en algún servidor?</h5>
+                        <p class="text-slate-400">No. Todas las herramientas funcionan sin base de datos remota: al cerrar o recargar la pestaña de tu navegador, la información procesada se libera automáticamente de la memoria RAM de tu equipo.</p>
+                    </div>
+                    <div class="bg-slate-900/50 p-4 rounded-xl border border-slate-800/80 space-y-1.5">
+                        <h5 class="font-bold text-slate-200">¿Las herramientas tienen algún costo o límite de uso?</h5>
+                        <p class="text-slate-400">El acceso a todas las calculadoras, lectores XML/TXT y exportadores a Excel y PDF es completamente gratuito, sin registros obligatorios ni límites de filas o comprobantes.</p>
+                    </div>
+                </div>
+            </div>
+        </article>
 
         <!-- SECCIÓN DE LAS 3 TARJETAS DE CARACTERÍSTICAS Y PRIVACIDAD -->
         <section class="grid grid-cols-1 md:grid-cols-3 gap-6 pt-2">
@@ -199,7 +237,7 @@
                     <h4>Procesamiento 100% Local & Privado</h4>
                 </div>
                 <p class="text-xs text-slate-400 leading-relaxed">
-                    Nuestra herramienta calcula el ISR y procesa tus archivos de Excel directamente en tu navegador utilizando JavaScript. Los datos <strong class="text-slate-200">nunca se envían ni se almacenan en servidores externos</strong>, garantizando la privacidad absoluta de tu información nómina y contable.
+                    Toda la suite fiscal procesa tus XML, TXT y libros de Excel directamente en tu navegador. Los datos contables y de tus trabajadores <strong class="text-slate-200">jamás se envían ni almacenan en servidores externos</strong>.
                 </p>
             </div>
 
@@ -207,10 +245,10 @@
             <div class="glass-panel rounded-2xl p-6 space-y-3">
                 <div class="flex items-center gap-2.5 text-blue-400 font-bold text-sm">
                     <i class="fa-solid fa-scale-balanced"></i>
-                    <h4>Tablas Oficiales ISR LISR 2026</h4>
+                    <h4>Normativa SAT, LISR, LFT e IMSS 2026</h4>
                 </div>
                 <p class="text-xs text-slate-400 leading-relaxed">
-                    Soporte preciso para todas las tarifas publicadas por el SAT para el ejercicio 2026. Calcula retenciones por períodos diarios, semanales, decenales, quincenales, mensuales y anuales, ajustando los límites de excedente y cuotas fijas al instante.
+                    Cálculos actualizados con las tarifas oficiales de ISR 2026, reglas de retención RESICO/IVA, factores de integración por vacaciones dignas y validación de estructura CFDI 4.0.
                 </p>
             </div>
 
@@ -221,7 +259,7 @@
                     <h4>Procesamiento Masivo & PDF / Excel</h4>
                 </div>
                 <p class="text-xs text-slate-400 leading-relaxed">
-                    Agiliza el cálculo masivo de la nómina o presupuestos de tu empresa. Carga un archivo de Excel con múltiples importes, visualiza la lista en pantalla y genera reportes institucionales estructurados en Excel o PDF horizontales en segundos.
+                    Automatiza tareas repetitivas cargando lotes completos de facturas o plantillas de Excel y exporta reportes ejecutivos listos para contabilidad en CSV, XLSX o PDF con QR oficial.
                 </p>
             </div>
         </section>
@@ -230,72 +268,18 @@
 
     <!-- Footer -->
     <footer class="glass-panel border-t border-slate-800 py-6">
-        <div class="max-w-7xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-500">
+        <div class="max-w-7xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-400">
             <p>© 2026 Tax & Fiscal Tools Pro. Desarrollado para uso libre y privado.</p>
-            <div class="flex items-center space-x-6 font-medium">
+            <div class="flex flex-wrap items-center justify-center gap-5 font-medium">
+                <a href="https://eduardorito.github.io/lector-xml-sat/" class="hover:text-cyan-400 transition-colors">Lector XML</a>
+                <a href="https://eduardorito.github.io/calculadora-isr/" class="hover:text-cyan-400 transition-colors">Calc. ISR</a>
+                <a href="https://eduardorito.github.io/calculado-nomina.html" class="hover:text-cyan-400 transition-colors">Nómina</a>
+                <a href="https://eduardorito.github.io/retenciones-sat/" class="hover:text-cyan-400 transition-colors">Retenciones</a>
                 <a href="https://eduardorito.github.io/privacidad.html" class="hover:text-cyan-400 transition-colors">Política de Privacidad</a>
                 <a href="https://eduardorito.github.io/contacto.html" class="hover:text-cyan-400 transition-colors">Contacto & Sobre Nosotros</a>
             </div>
         </div>
     </footer>
 
-    <!-- MODAL POLÍTICA DE PRIVACIDAD -->
-    <div id="privacyModal" class="fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-md flex items-center justify-center p-4 hidden">
-        <div class="glass-panel rounded-2xl max-w-lg w-full p-6 sm:p-8 space-y-4 relative border border-slate-700 max-h-[85vh] overflow-y-auto">
-            <button onclick="toggleModal('privacyModal')" class="absolute top-4 right-4 text-slate-400 hover:text-white text-lg">
-                <i class="fa-solid fa-xmark"></i>
-            </button>
-            <h3 class="font-bold text-slate-100 text-lg border-b border-slate-800 pb-2">Política de Privacidad</h3>
-            <div class="space-y-3 text-xs text-slate-300 leading-relaxed">
-                <p>En Tax & Fiscal Tools nos tomamos muy en serio la privacidad de los usuarios. Esta política describe los términos bajo los cuales operan nuestras utilidades web.</p>
-                <h4 class="font-bold text-cyan-400">1. Procesamiento en Cliente</h4>
-                <p>Todos los documentos procesados (XML, TXT del SAT, libros de Microsoft Excel) son leídos y calculados exclusivamente de forma local dentro de la memoria RAM del navegador web del usuario. Ningún archivo o dato personal es subido, almacenado o transferido a servidores externos.</p>
-                <h4 class="font-bold text-cyan-400">2. Cookies y Publicidad de Terceros</h4>
-                <p>Este sitio web utiliza servicios de terceros como Google Analytics y Google AdSense. Google utiliza cookies para publicar anuncios basados en las visitas previas de los usuarios a este u otros sitios web. Los usuarios pueden inhabilitar la publicidad personalizada en la configuración de anuncios de Google.</p>
-            </div>
-            <div class="pt-2 text-right">
-                <button onclick="toggleModal('privacyModal')" class="px-5 py-2 rounded-xl bg-cyan-500/20 text-cyan-300 border border-cyan-500/30 text-xs font-bold">Cerrar</button>
-            </div>
-        </div>
-    </div>
-
-    <!-- MODAL SOBRE NOSOTROS -->
-    <div id="aboutModal" class="fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-md flex items-center justify-center p-4 hidden">
-        <div class="glass-panel rounded-2xl max-w-lg w-full p-6 sm:p-8 space-y-6 relative border border-slate-700">
-            <button onclick="toggleModal('aboutModal')" class="absolute top-4 right-4 text-slate-400 hover:text-white text-lg">
-                <i class="fa-solid fa-xmark"></i>
-            </button>
-            
-            <h3 class="font-bold text-slate-100 text-lg border-b border-slate-800 pb-3">Contacto & Sobre Nosotros</h3>
-            
-            <div class="space-y-4 text-xs text-slate-300 leading-relaxed">
-                <div>
-                    <h4 class="font-bold text-slate-100 mb-1">Sobre el Proyecto</h4>
-                    <p>Plataforma de herramientas contables creada de forma independiente para apoyar a profesionales de la contabilidad y contribuyentes en México con soluciones gratuitas y privadas.</p>
-                </div>
-                
-                <div>
-                    <h4 class="font-bold text-slate-100 mb-1">Contacto & Soporte</h4>
-                    <p class="mb-2">Para soporte, sugerencias o consultar el código fuente:</p>
-                    <ul class="space-y-1 font-mono text-cyan-400">
-                        <li>• Correo: <a href="mailto:eduardorito85@gmail.com" class="underline hover:text-cyan-300">eduardorito85@gmail.com</a></li>
-                        <li>• Repositorio en GitHub: <a href="https://github.com/eduardorito" target="_blank" rel="noopener noreferrer" class="underline hover:text-cyan-300">GitHub Repository</a></li>
-                    </ul>
-                </div>
-            </div>
-
-            <div class="pt-2 text-right">
-                <button onclick="toggleModal('aboutModal')" class="px-5 py-2 rounded-xl bg-cyan-500/20 text-cyan-300 border border-cyan-500/30 text-xs font-bold hover:bg-cyan-500/30 transition-all">
-                    Entendido
-                </button>
-            </div>
-        </div>
-    </div>
-
-    <script>
-        function toggleModal(id) {
-            document.getElementById(id).classList.toggle('hidden');
-        }
-    </script>
 </body>
 </html>
